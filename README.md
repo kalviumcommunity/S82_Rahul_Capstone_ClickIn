@@ -1,5 +1,8 @@
 
-# ClickIn
+
+<h1 align="left"> <img src="./assets/ClickIn logo.png" alt="ClickIn Logo" width="60" style="vertical-align: middle;"/>
+  <span style="font-size: 2em; font-weight: bold; vertical-align: middle; margin-left: 10px;">ClickIn</span>
+</h1>
 
 
 **ClickIn** — a full-stack instant grocery delivery web application, delivering fresh groceries to your doorstep. Built with a modern web stack focusing on performance, scalability, and seamless user experience.
