@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { React } from 'react'
 
 import './App.css'
 
@@ -6,7 +6,8 @@ function App() {
   
 
   return (
-    <div>ClickIn</div>
+    <div>
+      <h1>ClickIn</h1></div>
   )
 }
 
