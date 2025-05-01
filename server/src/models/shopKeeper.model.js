@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const VendorSchema = new mongoose.Schema({
+const shopKeeperSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -22,10 +22,10 @@ const VendorSchema = new mongoose.Schema({
   location: String,
   role: {
     type: String,
-    default: "vendor"
+    default: "ShopKeeper"
   }
 }, {
   timestamps: true
 });
 
-export default mongoose.model("Vendor", VendorSchema);
+export default mongoose.model("shopKeeper", shopKeeperSchema);
