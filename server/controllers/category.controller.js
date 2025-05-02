@@ -18,3 +18,13 @@ export const getCategoryById = async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 };
+
+export const createCategory = async (req, res) => {
+  try{
+    const newCategory = new Category(req.body);
+    const saved = await newCategory.save();
+    res.status(201).json(saved);
+  }catch(err){
+    res.status(500).json({ error: 'Failed to create category.'});
+  }
+};
