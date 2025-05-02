@@ -18,3 +18,15 @@ export const getAddressById = async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 };
+
+export const createAddress = async (req,res)=> {
+  try{
+    const newAddress = new Address(req.body);
+    const saved = await newAddress.save();
+    res.status(201).json(saved);
+  }catch(err){
+    res.status(500).json({ error: 'Failed to create address.'});
+    
+  }
+
+};

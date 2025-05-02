@@ -36,3 +36,13 @@ export const getProductsByEmail = async (req, res) => {
     res.status(500).json({ error: 'Could not fetch user products.' });
   }
 };
+
+export const createProduct = async (req,res)=>{
+  try{
+    const newProduct = new Product(req.body);
+    const saved = await newProduct.save();
+    res.status(201).json(saved);
+  } catch(err){
+    res.status(500).json({error: 'failed to create product. '});
+  }
+};

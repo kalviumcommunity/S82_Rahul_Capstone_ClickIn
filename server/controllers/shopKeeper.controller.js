@@ -18,3 +18,13 @@ export const getShopkeeperById = async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 };
+
+export const createShopKeeper = async (req,res)=>{
+  try{
+    const newShopKeeper = new Shopkeeper(req.body);
+    const saved = await newShopKeeper.save();
+    res.status(201).json(saved);
+  } catch(err){
+    res.status(500).json({ error: 'Failed to create shopKeeper. '});
+  }
+};

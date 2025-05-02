@@ -19,3 +19,12 @@ export const getDeliveryPartnerById = async (req, res) => {
   }
 };
 
+export const createDeliveryPartner = async (req, res)=>{
+  try{
+    const newPartner = new DeliveryPartner(req.body);
+    const saved = await newPartner.save();
+    res.status(201).json(saved);
+  }catch(err){
+    res.status(500).json({ error: 'Failed to create deliver partner. '})
+  }
+};

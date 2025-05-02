@@ -18,3 +18,13 @@ export const getOrderById = async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 };
+
+export const createOrder = async (req,res)=>{
+  try{
+    const newOrder = new Order(req.body);
+    const saved = await newOrder.save();
+    req.status(201).json(saved);
+  } catch(err){
+    res.status(500).json({ error: 'Failed to create Order.'});
+  }
+};
