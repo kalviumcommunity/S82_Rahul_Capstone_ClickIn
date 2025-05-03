@@ -28,3 +28,12 @@ export const createCategory = async (req, res) => {
     res.status(500).json({ error: 'Failed to create category.'});
   }
 };
+
+export const updateCategory = async (req, res) => {
+  try {
+    const updated = await Category.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.status(200).json(updated);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to update category.' });
+  }
+};

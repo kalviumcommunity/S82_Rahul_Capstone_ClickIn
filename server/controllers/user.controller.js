@@ -29,3 +29,12 @@ export const createUser = async (req,res) => {
   }
 
 };
+
+export const updateUser = async (req, res) => {
+  try {
+    const updated = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.status(200).json(updated);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to update user.' });
+  }
+};

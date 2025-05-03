@@ -46,3 +46,12 @@ export const createProduct = async (req,res)=>{
     res.status(500).json({error: 'failed to create product. '});
   }
 };
+
+export const updateProduct = async (req, res) => {
+  try {
+    const updated = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.status(200).json(updated);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to update product.' });
+  }
+};
