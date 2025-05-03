@@ -28,3 +28,12 @@ export const createShopKeeper = async (req,res)=>{
     res.status(500).json({ error: 'Failed to create shopKeeper. '});
   }
 };
+
+export const updateShopkeeper = async (req, res) => {
+  try {
+    const updated = await Shopkeeper.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.status(200).json(updated);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to update shopkeeper.' });
+  }
+};

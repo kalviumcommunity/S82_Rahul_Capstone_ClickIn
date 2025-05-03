@@ -25,6 +25,15 @@ export const createDeliveryPartner = async (req, res)=>{
     const saved = await newPartner.save();
     res.status(201).json(saved);
   }catch(err){
-    res.status(500).json({ error: 'Failed to create deliver partner. '})
+    res.status(500).json({ error: 'Failed to create deliver partner.'})
+  }
+};
+
+export const updateDeliveryPartner = async (req, res) => {
+  try {
+    const updated = await DeliveryPartner.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.status(200).json(updated);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to update" });
   }
 };

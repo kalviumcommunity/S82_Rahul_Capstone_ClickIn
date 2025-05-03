@@ -23,8 +23,17 @@ export const createOrder = async (req,res)=>{
   try{
     const newOrder = new Order(req.body);
     const saved = await newOrder.save();
-    req.status(201).json(saved);
+    res.status(201).json(saved);
   } catch(err){
     res.status(500).json({ error: 'Failed to create Order.'});
+  }
+};
+
+export const updateOrder = async (req, res) => {
+  try {
+    const updated = await Order.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.status(200).json(updated);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to update order.' });
   }
 };
