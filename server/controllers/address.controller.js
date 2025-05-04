@@ -39,3 +39,12 @@ export const updateAddress = async (req, res)=> {
     res.status(500).json({ error: 'Failed to update address'});
   }
 };
+
+export const deleteAddress = async (req, res) => {
+  try {
+    await Address.findByIdAndDelete(req.params.id);
+    res.status(200).json({ message: 'Address deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to delete address.' });
+  }
+};
