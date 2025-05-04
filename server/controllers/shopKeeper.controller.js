@@ -37,3 +37,12 @@ export const updateShopkeeper = async (req, res) => {
     res.status(500).json({ error: 'Failed to update shopkeeper.' });
   }
 };
+
+export const deleteShopkeeper = async (req, res) => {
+  try {
+    await Shopkeeper.findByIdAndDelete(req.params.id);
+    res.status(200).json({ message: 'Shopkeeper deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to delete shopkeeper.' });
+  }
+};

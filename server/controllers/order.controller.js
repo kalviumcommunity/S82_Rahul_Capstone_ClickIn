@@ -37,3 +37,13 @@ export const updateOrder = async (req, res) => {
     res.status(500).json({ error: 'Failed to update order.' });
   }
 };
+
+
+export const deleteOrder = async (req, res) => {
+  try {
+    await Order.findByIdAndDelete(req.params.id);
+    res.status(200).json({ message: 'Order deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to delete order.' });
+  }
+};
