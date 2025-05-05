@@ -1,0 +1,20 @@
+meta {
+  name: clickin
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:5000/api/users/otp-verfy
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    
+    "email": "sanket@example.com",
+    "otp": "929439"
+  }
+  
+}
