@@ -42,8 +42,8 @@ Presentation: [ClickIn PPT](https://www.figma.com/proto/mlZagr1AFX3qVg2FQPEQrx/C
 - 👨‍💻 Delivery partner app integration.
 
 ---
-## Demo
-🔗 [Live Site]
+## Live Site
+🔗 Frontend Deploy: [ClickIn.com](https://clickin.netlify.app)
 
 ---
 
