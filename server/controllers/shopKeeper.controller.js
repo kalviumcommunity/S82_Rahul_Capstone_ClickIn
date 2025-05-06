@@ -1,4 +1,4 @@
-import Shopkeeper from '../src/models/shopKeeper.model';
+import Shopkeeper from '../src/models/shopKeeper.model.js';
 
 export const getAllShopkeepers = async (req, res) => {
   try {
