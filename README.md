@@ -43,7 +43,7 @@ Presentation: [ClickIn PPT](https://www.figma.com/proto/mlZagr1AFX3qVg2FQPEQrx/C
 
 ---
 ## Live Site
-🔗 Frontend Deploy: [ClickIn.com](https://clickin.netlify.app)
+🔗 Frontend Deployed: [ClickIn.com](https://clickin.netlify.app)
 
 ---
 
