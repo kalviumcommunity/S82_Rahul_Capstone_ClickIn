@@ -4,4 +4,4 @@ export { default as Category }        from "./category.model.js";
 export { default as Product }         from "./product.model.js";
 export { default as Order }           from "./orderItem.model.js";
 export { default as DeliveryPartner } from "./deliveryPartner.model.js";
-export { default as Vendor }          from "./shopkeeper.model.js";
+export { default as Vendor }          from "./shopKeeper.model.js";

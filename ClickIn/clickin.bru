@@ -5,7 +5,7 @@ meta {
 }
 
 post {
-  url: http://localhost:5000/api/users/otp-verfy
+  url: http://localhost:5000/api/users/add-user
   body: json
   auth: none
 }
@@ -14,7 +14,13 @@ body:json {
   {
     
     "email": "sanket@example.com",
-    "otp": "929439"
+    "password": "$2b$10$abcdefgHashedPasswordExample", 
+    "phone": "9876543210",
+    "isActivated": true,
+    "addresses": [
+      "6637c25d5f9872f55d1a1b33",
+      "6637c2605f9872f55d1a1b34"
+    ]
   }
   
 }
