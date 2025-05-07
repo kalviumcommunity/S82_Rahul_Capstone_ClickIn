@@ -43,7 +43,11 @@ Presentation: [ClickIn PPT](https://www.figma.com/proto/mlZagr1AFX3qVg2FQPEQrx/C
 
 ---
 ## Live Site
-🔗 Frontend Deployed: [ClickIn.com](https://clickin.netlify.app)
+
+🌐 Frontend Deployed: [ClickIn.com](https://clickin.netlify.app)
+
+🔗 Backend Deployed: [ClickIn](https://s82-rahul-capstone-clickin-3.onrender.com)
+
 
 ---
 
@@ -105,10 +109,10 @@ Presentation: [ClickIn PPT](https://www.figma.com/proto/mlZagr1AFX3qVg2FQPEQrx/C
 ### Home Page
 ![Home Page](./assets/screenshots/homepage.png)
 
-### Vendor Dashboard
+### Vendor Dashboard Page
 ![Vendor Dashboard](./assets/screenshots/vendor_dashboard.png)
 
-### Delivery Partner App
+### Delivery Partner Dashboard Page
 ![Delivery Partner](./assets/screenshots/delivery_partner.png)
 
 
