@@ -5,7 +5,7 @@ meta {
 }
 
 post {
-  url: http://localhost:5000/api/users/otp-verfy
+  url: http://localhost:5000/api/users/login
   body: json
   auth: none
 }
@@ -14,7 +14,11 @@ body:json {
   {
     
     "email": "abr14022007@gmail.com",
-    "otp":"563850"
+    "password": "1234",
+    "phone": "+918273645010",
+    "addresses": [
+      
+    ]
   }
   
 }
