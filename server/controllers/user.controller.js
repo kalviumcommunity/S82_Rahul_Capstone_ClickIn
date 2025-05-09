@@ -1,6 +1,9 @@
 
 import User from '../src/models/user.model.js';
-import sendMail from '../util/mail.js';
+import nodemailer from 'nodemailer';
+import crypto from 'crypto';
+import bcrypt from "bcrypt";
+import jwt from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
 import crypto from 'crypto';
 import bcrypt from "bcrypt";
