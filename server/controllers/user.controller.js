@@ -15,16 +15,16 @@ async function sendOTP(email, otp) {
 const transporter = nodemailer.createTransport({
 service: 'Gmail',
 auth: {
-user: process.env.ADMIN_NAME,
-pass: process.env.ADMIN_PASSWORD,
+  user: process.env.ADMIN_NAME,
+  pass: process.env.ADMIN_PASSWORD,
 },
 });
 
 await transporter.sendMail({
-from: `ClickIn <${process.env.ADMIN_NAME}>`,
-to: email,
-subject: 'Your OTP for Signup in ClickIn',
-text: `Your OTP is: ${otp}. It is valid for 3 minutes.`,
+  from: `ClickIn <${process.env.ADMIN_NAME}>`,
+  to: email,
+  subject: 'Your OTP for Signup in ClickIn',
+  text: `Your OTP is: ${otp}. It is valid for 3 minutes.`,
 });
 }
 
@@ -130,7 +130,7 @@ if (!user.isActivated) {
   return res.status(403).json({ message: 'Please verify your account via OTP' });
 }
 
-const token = jwt.sign({ id: user._id }, process.env.secret, { expiresIn: '7d' });
+const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
 
 res.cookie('accesstoken', token, {
   httpOnly: true,
