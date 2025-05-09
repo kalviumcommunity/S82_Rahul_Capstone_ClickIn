@@ -13,7 +13,6 @@ import shopkeeperRoutes from './routes/shopKeeper.routes.js';
 import userRoutes from './routes/user.routes.js';
 
 
-
 const app = express();
 
 app.use(cors());
@@ -29,6 +28,7 @@ app.use('/api/addresses', addressRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/shopkeepers', shopkeeperRoutes);
 app.use('/api/users', userRoutes);
+
 
 // Test route
 app.get('/', (req, res) => {
