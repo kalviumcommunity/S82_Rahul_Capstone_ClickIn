@@ -166,3 +166,48 @@ res.status(200).json({ message: 'User deleted successfully' });
 res.status(500).json({ error: 'Failed to delete user.' });
 }
 }; 
+
+
+export const googleAuthCallback = async (req, res) => {
+  try {
+    const { profile, user } = req.user;
+
+    const { displayName, emails } = profile;
+    if (!emails || emails.length === 0) {
+      return res.status(400).json({ message: 'Email is required for authentication' });
+    }
+
+    const email = emails[0].value;
+    const name = displayName;
+
+    // If for any reason the user isn’t saved yet (extra safety check)
+    let existingUser = await User.findOne({ email });
+    if (!existingUser) {
+      existingUser = new User({
+        name,
+        email,
+        password: null,
+        // role: [ 'Organizer','user'],
+        isActivated: true,
+      });
+      await existingUser.save();
+    }
+
+    // const token = generateToken(existingUser._id, existingUser.role, existingUser.name, existingUser.email);
+
+    
+const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
+
+    res.cookie('accesstoken', token, {
+      httpOnly: true,
+      secure: true,             //  true because Netlify is HTTPS
+      sameSite: 'None',          //  allow cross-site cookies
+      maxAge: 24 * 60 * 60 * 1000, // 1 day
+  });
+    res.redirect(`http://localhost:5173/google-success?token=${token}`);
+
+  } catch (err) {
+    console.error("Google Auth Error:", err);
+    res.status(500).json({ message: "Failed to authenticate with Google", error: err.message });
+  }
+};
