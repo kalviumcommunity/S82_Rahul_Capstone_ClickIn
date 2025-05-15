@@ -18,7 +18,7 @@ export const getAddressById = async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 };
-
+//create
 export const createAddress = async (req,res)=> {
   try{
     const newAddress = new Address(req.body);

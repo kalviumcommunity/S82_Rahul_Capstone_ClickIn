@@ -60,6 +60,7 @@ const Footer = () => {
             </p>
           </div>
         </div>
+        <button></button>
         
         <div className="mt-8 pt-4 border-t border-gray-200">
           <p className="text-sm text-center text-gray-500">

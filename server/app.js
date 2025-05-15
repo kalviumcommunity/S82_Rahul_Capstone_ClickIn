@@ -13,8 +13,8 @@ import geminiRoutes from './routes/gemini.routes.js';
 // Auth and error middleware
 import './config/passport.js';
 import { authenticateToken } from './src/utils/authUtils.js';
-import errorHandler from './src/utils/errorHandler.js';
 
+// dotenv
 // Load environment variables
 dotenv.config();
 

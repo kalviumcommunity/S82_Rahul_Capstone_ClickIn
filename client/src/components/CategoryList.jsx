@@ -6,7 +6,7 @@ const categories = [
   { id: 1, name: "Fruits & Vegetables", icon: "🥕" },
   { id: 2, name: "Dairy & Breakfast", icon: "🥛" },
   { id: 3, name: "Snacks", icon: "🍿" },
-  { id: 4, name: "Beverages", icon: "🥤" },0
+  { id: 4, name: "Beverages", icon: "🥤" },
   { id: 5, name: "Household", icon: "🧹" },
   { id: 6, name: "Personal Care", icon: "🧴" },
   { id: 7, name: "Bakery", icon: "🍞" },
