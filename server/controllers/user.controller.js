@@ -1,5 +1,6 @@
 
 import User from '../src/models/user.model.js';
+
 import sendMail from '../src/utils/mail.js';
 import nodemailer from 'nodemailer';
 import crypto from 'crypto';
