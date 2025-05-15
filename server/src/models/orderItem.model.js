@@ -23,10 +23,10 @@ const OrderItemSchema = new mongoose.Schema({
 const OrderSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",  // Reference to User model
+    ref: "User",  
     required: true
   },
-  items: [OrderItemSchema],  // Array of ordered items
+  items: [OrderItemSchema],  
   total: {
     type: Number,
     required: true
@@ -38,11 +38,11 @@ const OrderSchema = new mongoose.Schema({
   },
   deliveryPartner: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "DeliveryPartner",  // Reference to DeliveryPartner model
+    ref: "DeliveryPartner",  
   },
   deliveryAddress: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Address",  // Reference to Address model for shipping location
+    ref: "Address",  
   },
   createdAt: {
     type: Date,
