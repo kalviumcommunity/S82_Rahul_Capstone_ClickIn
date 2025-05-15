@@ -1,4 +1,7 @@
 import express from 'express';
+import passport from 'passport';
+import upload from '../middleware/multer.js';
+
 import {
   getAllUsers,
   getUserById,
@@ -7,29 +10,28 @@ import {
   createUser,
   otpverify,
   loginUser,
+  googleAuthCallback,
 } from '../controllers/user.controller.js';
-import passport from 'passport';
-import { googleAuthCallback } from '../controllers/user.controller.js';
-
-
 
 const router = express.Router();
 
+// 🔒 Auth Routes
+router.post('/register', upload.single('profileImage'), createUser);
+router.post('/login', loginUser);
+router.post('/verify-otp', otpverify);
 
-
+// 👤 User Management Routes
 router.get('/users', getAllUsers);
 router.get('/user/:id', getUserById);
-router.post('/signup', createUser);
-router.post('/login',loginUser)
-router.post('/verify-otp',otpverify)
-router.put('/user/:id', updateUser);
+router.put('/update/:id', upload.single('profileImage'), updateUser);
 router.delete('/user/:id', deleteUser);
-router.get("/google", passport.authenticate("google", { scope: ["profile", "email"]   }));
+
+// 🌐 Google OAuth
+router.get("/google", passport.authenticate("google", { scope: ["profile", "email"] }));
 
 router.get(
   "/google/callback",
   passport.authenticate("google", { session: false, failureRedirect: "http://localhost:5173/login" }),
-  // <-- add this middleware to log req.user
   (req, res, next) => {
     console.log("User object:", req.user);
     next();
@@ -38,5 +40,3 @@ router.get(
 );
 
 export default router;
-
-

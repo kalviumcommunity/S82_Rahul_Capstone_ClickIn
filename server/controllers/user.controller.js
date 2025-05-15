@@ -1,9 +1,7 @@
 
 import User from '../src/models/user.model.js';
-import nodemailer from 'nodemailer';
-import crypto from 'crypto';
-import bcrypt from "bcrypt";
-import jwt from 'jsonwebtoken';
+
+import sendMail from '../src/utils/mail.js';
 import nodemailer from 'nodemailer';
 import crypto from 'crypto';
 import bcrypt from "bcrypt";
@@ -51,33 +49,46 @@ res.status(500).json({ error: 'Server error' });
 
 // Create user + Send OTP
 export const createUser = async (req, res) => {
-const { name, email, password, phone, addresses } = req.body;
+  const { name, email, password, phone, addresses } = req.body;
 
-try {
-const hashedPassword = await bcrypt.hash(password, 5);
-const newUser = new User({ name, email, password: hashedPassword, phone, addresses });
+  try {
+    const existing = await User.findOne({ email });
+    if (existing) {
+      return res.status(400).json({ message: 'User already exists with this email' });
+    }
 
-const otp = crypto.randomInt(100000, 999999).toString();
-otpStore.set(email, {
-  otp,
-  name,
-  expiresAt: Date.now() + 3 * 60 * 1000, // 3 minutes
-});
+    const hashedPassword = await bcrypt.hash(password, 5);
+    const profileImage = req.file ? req.file.filename : '';
 
-try {
-  await sendOTP(email, otp);
-} catch (e) {
-  return res.status(500).json({ message: 'Failed to send OTP', error: e.message });
-}
+    const newUser = new User({
+      name,
+      email,
+      password: hashedPassword,
+      phone,
+      addresses,
+      profileImage,
+    });
 
-await newUser.save();
-res.status(201).json({ message: 'OTP sent to your mail' });
+    const otp = crypto.randomInt(100000, 999999).toString();
+    otpStore.set(email, {
+      otp,
+      name,
+      expiresAt: Date.now() + 3 * 60 * 1000,
+    });
 
+    try {
+      await sendOTP(email, otp);
+    } catch (e) {
+      return res.status(500).json({ message: 'Failed to send OTP', error: e.message });
+    }
 
-} catch (err) {
-console.error(err);
-res.status(500).json({ error: 'Failed to create user' });
-}
+    await newUser.save();
+    res.status(201).json({ message: 'OTP sent to your email for verification.' });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to create user' });
+  }
 };
 
 // Verify OTP

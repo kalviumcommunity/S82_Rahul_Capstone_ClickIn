@@ -1,0 +1,49 @@
+.toggle-container {
+  width: 250px;
+  height: 60px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  font-family: sans-serif;
+  margin: 20px;
+}
+
+.toggle-label {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.toggle-switch {
+  width: 60px;
+  height: 30px;
+  border-radius: 30px;
+  background-color: white;
+  border: 2px solid #649B00;
+  display: flex;
+  align-items: center;
+  padding: 3px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.toggle-switch.on {
+  background-color: #649B00;
+}
+
+.toggle-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: #649B00;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.toggle-switch.on .toggle-dot {
+  transform: translateX(30px);
+  background-color: white;
+}

@@ -1,3 +1,6 @@
+import React from "react";
+import PropTypes from "prop-types";
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -27,28 +30,40 @@ import DeliveryEarnings from "@/pages/delivery/Earnings";
 import DeliveryProfile from "@/pages/delivery/Profile";
 import NotFound from "@/pages/NotFound";
 import GoogleSuccess from "./pages/googleAuth/GoogleSucess";
+import Explore from "@/pages/Explore";
 
 const queryClient = new QueryClient();
 
-// Protected route wrapper
-const ProtectedRoute = ({ children, requiredRole }) => {
+// Protected route wrapper component
+const ProtectedRoute = React.memo(({ children, requiredRole }) => {
   const { isAuthenticated, user } = useAuth();
-  
+
   if (!isAuthenticated) {
+    // User is not logged in
     return <Navigate to="/login" replace />;
   }
 
   if (requiredRole && user?.role !== requiredRole) {
+    // User role mismatch, redirect based on actual user role
     if (user?.role === "customer") {
       return <Navigate to="/" replace />;
-    } else if (user?.role === "vendor") {
+    }
+    if (user?.role === "vendor") {
       return <Navigate to="/vendor/dashboard" replace />;
-    } else if (user?.role === "delivery") {
+    }
+    if (user?.role === "delivery") {
       return <Navigate to="/delivery/dashboard" replace />;
     }
+    // fallback redirect if role is unknown
+    return <Navigate to="/" replace />;
   }
 
   return <>{children}</>;
+});
+
+ProtectedRoute.propTypes = {
+  children: PropTypes.node.isRequired,
+  requiredRole: PropTypes.string,
 };
 
 const AppRoutes = () => {
@@ -61,83 +76,122 @@ const AppRoutes = () => {
       <Route path="/product/:id" element={<ProductDetail />} />
       <Route path="/stores" element={<Stores />} />
       <Route path="/category/:id" element={<CategoryDetail />} />
+      <Route path="/explore" element={<Explore />} />
+      <Route path="/google-success" element={<GoogleSuccess />} />
 
       {/* Customer Routes */}
-      <Route path="/cart" element={
-        <ProtectedRoute requiredRole="customer">
-          <Cart />
-        </ProtectedRoute>
-      } />
-      <Route path="/orders" element={
-        <ProtectedRoute requiredRole="customer">
-          <Orders />
-        </ProtectedRoute>
-      } />
-      <Route path="/order/:id" element={
-        <ProtectedRoute requiredRole="customer">
-          <OrderDetail />
-        </ProtectedRoute>
-      } />
-      <Route path="/profile" element={
-        <ProtectedRoute>
-          <Profile />
-        </ProtectedRoute>
-      } />
-      <Route path="/notifications" element={
-        <ProtectedRoute>
-          <Notifications />
-        </ProtectedRoute>
-      } />
+      <Route
+        path="/cart"
+        element={
+          <ProtectedRoute requiredRole="customer">
+            <Cart />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/orders"
+        element={
+          <ProtectedRoute requiredRole="customer">
+            <Orders />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/order/:id"
+        element={
+          <ProtectedRoute requiredRole="customer">
+            <OrderDetail />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/notifications"
+        element={
+          <ProtectedRoute>
+            <Notifications />
+          </ProtectedRoute>
+        }
+      />
 
       {/* Vendor Routes */}
-      <Route path="/vendor/dashboard" element={
-        <ProtectedRoute requiredRole="vendor">
-          <VendorDashboard />
-        </ProtectedRoute>
-      } />
-      <Route path="/vendor/products" element={
-        <ProtectedRoute requiredRole="vendor">
-          <VendorProducts />
-        </ProtectedRoute>
-      } />
-      <Route path="/vendor/orders" element={
-        <ProtectedRoute requiredRole="vendor">
-          <VendorOrders />
-        </ProtectedRoute>
-      } />
-      <Route path="/vendor/settings" element={
-        <ProtectedRoute requiredRole="vendor">
-          <VendorSettings />
-        </ProtectedRoute>
-      } />
+      <Route
+        path="/vendor/dashboard"
+        element={
+          <ProtectedRoute requiredRole="vendor">
+            <VendorDashboard />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/vendor/products"
+        element={
+          <ProtectedRoute requiredRole="vendor">
+            <VendorProducts />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/vendor/orders"
+        element={
+          <ProtectedRoute requiredRole="vendor">
+            <VendorOrders />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/vendor/settings"
+        element={
+          <ProtectedRoute requiredRole="vendor">
+            <VendorSettings />
+          </ProtectedRoute>
+        }
+      />
 
       {/* Delivery Partner Routes */}
-      <Route path="/delivery/dashboard" element={
-        <ProtectedRoute requiredRole="delivery">
-          <DeliveryDashboard />
-        </ProtectedRoute>
-      } />
-      <Route path="/delivery/orders" element={
-        <ProtectedRoute requiredRole="delivery">
-          <DeliveryOrders />
-        </ProtectedRoute>
-      } />
-      <Route path="/delivery/earnings" element={
-        <ProtectedRoute requiredRole="delivery">
-          <DeliveryEarnings />
-        </ProtectedRoute>
-      } />
-      <Route path="/delivery/profile" element={
-        <ProtectedRoute requiredRole="delivery">
-          <DeliveryProfile />
-        </ProtectedRoute>
-      } />
+      <Route
+        path="/delivery/dashboard"
+        element={
+          <ProtectedRoute requiredRole="delivery">
+            <DeliveryDashboard />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/delivery/orders"
+        element={
+          <ProtectedRoute requiredRole="delivery">
+            <DeliveryOrders />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/delivery/earnings"
+        element={
+          <ProtectedRoute requiredRole="delivery">
+            <DeliveryEarnings />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/delivery/profile"
+        element={
+          <ProtectedRoute requiredRole="delivery">
+            <DeliveryProfile />
+          </ProtectedRoute>
+        }
+      />
 
-      {/* Catch-all route for Not Found */}
+      {/* Catch-all route for 404 Not Found */}
       <Route path="*" element={<NotFound />} />
-       <Route path="/google-success" element={<GoogleSuccess/>}/>
     </Routes>
-   
   );
 };
 

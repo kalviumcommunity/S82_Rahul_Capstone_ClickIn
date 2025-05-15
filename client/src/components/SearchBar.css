@@ -1,0 +1,47 @@
+/* src/components/SearchBar.css */
+.search-container {
+  position: relative;
+  width: 300px;
+  margin: 100px auto;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.suggestions-dropdown {
+  position: absolute;
+  top: 42px;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-top: none;
+  max-height: 200px;
+  overflow-y: auto;
+  animation: slideDown 0.3s ease;
+  z-index: 1000;
+}
+
+.suggestions-dropdown li {
+  padding: 10px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.suggestions-dropdown li:hover {
+  background-color: #f0f0f0;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
