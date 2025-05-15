@@ -8,7 +8,11 @@ const resolvers = {
     ...categoryResolvers.Query,
     ...shopkeeperResolvers.Query,
   },
-  
+  Mutation: {
+    ...productResolvers.Mutation,
+    ...categoryResolvers.Mutation,
+    ...shopkeeperResolvers.Mutation,
+  },
 };
 
 export default resolvers;

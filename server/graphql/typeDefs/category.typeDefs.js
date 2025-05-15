@@ -20,7 +20,12 @@ const categoryTypeDefs = gql`
     getCategoryById(id: ID!): Category
   }
 
-  
+  # Mutations for creating, updating, and deleting categories
+  type Mutation {
+    createCategory(input: CategoryInput!): Category!
+    updateCategory(id: ID!, input: CategoryInput!): Category!
+    deleteCategory(id: ID!): Boolean!
+  }
 `;
 
 export default categoryTypeDefs;

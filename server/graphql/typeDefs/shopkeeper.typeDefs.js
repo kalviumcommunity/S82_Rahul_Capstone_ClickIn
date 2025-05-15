@@ -33,6 +33,11 @@ const shopkeeperTypeDefs = gql`
   }
 
   # Mutations for creating, updating, and deleting shopkeepers
-  
+  type Mutation {
+    createShopKeeper(input: ShopKeeperInput!): ShopKeeper!
+    updateShopKeeper(id: ID!, input: ShopKeeperInput!): ShopKeeper!
+    deleteShopKeeper(id: ID!): Boolean!
+  }
 `;
+
 export default shopkeeperTypeDefs;
