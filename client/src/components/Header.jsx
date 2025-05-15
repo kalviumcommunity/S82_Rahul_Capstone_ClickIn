@@ -15,7 +15,7 @@ const Header = () => {
           role === "vendor" ? "/vendor/dashboard" : 
           "/delivery/dashboard"
         ) : "/"} className="flex items-center space-x-2">
-          <span className="text-2xl font-bold text-instait-purple">Instait</span>
+          <span className="text-2xl font-bold text-instait-purple">ClickIn</span>
         </Link>
 
         <div className="flex items-center space-x-4">

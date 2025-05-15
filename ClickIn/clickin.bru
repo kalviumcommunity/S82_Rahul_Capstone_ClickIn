@@ -4,21 +4,25 @@ meta {
   seq: 2
 }
 
-delete {
-  url: http://localhost:5000/api/users/user/681dc1aaf5f84a4e92761ff0
+post {
+  url: http://localhost:5000/api/gemini
   body: json
   auth: none
 }
 
+headers {
+  Content-Type: application/json
+}
+
 body:json {
   {
-    "name":"Rahul A B",
-    "email": "abr14022007@gmail.com",
-    "password": "1234",
-    "phone": "+918273612345",
-    "addresses": [
-      
-  ]
+    "query": "bl"
   }
   
+}
+
+tests {
+  {
+    "query": "bl"
+  }
 }
