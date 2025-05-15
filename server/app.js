@@ -21,9 +21,7 @@ dotenv.config();
 // Initialize app
 const app = express();
 
-// ---------------------------
-// Middleware Setup
-// ---------------------------
+
 
 // CORS Configuration
 const corsOptions = {
@@ -45,7 +43,7 @@ app.use('/api/orders', authenticateToken, orderRoutes);
 app.use('/api/delivery', authenticateToken, deliveryRoutes);
 app.use('/api/addresses', authenticateToken, addressRoutes);
 app.use('/api/auth', userRoutes);
-app.use('/api/gemini', geminiRoutes);  
+app.use('/api/gemini', geminiRoutes);  // ✅ Gemini search/autocomplete
 
 
 app.get('/', (req, res) => {
@@ -53,7 +51,7 @@ app.get('/', (req, res) => {
 });
 
 
-
+app.use(errorHandler);
 
 
 export default app;
