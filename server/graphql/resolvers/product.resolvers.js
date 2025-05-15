@@ -81,7 +81,38 @@ const productResolvers = {
     },
   },
 
-  
+  Mutation: {
+    // Create a new product
+    createProduct: async (_, { input }) => {
+      try {
+        const newProduct = new Product(input);
+        return await newProduct.save();
+      } catch (error) {
+        throw new Error('Failed to create product');
+      }
+    },
+
+    // Update existing product
+    updateProduct: async (_, { id, input }) => {
+      try {
+        return await Product.findByIdAndUpdate(id, input, { new: true })
+          .populate('category')
+          .populate('vendor');
+      } catch (error) {
+        throw new Error('Failed to update product');
+      }
+    },
+
+    // Delete a product
+    deleteProduct: async (_, { id }) => {
+      try {
+        const deleted = await Product.findByIdAndDelete(id);
+        return deleted !== null;
+      } catch (error) {
+        throw new Error('Failed to delete product');
+      }
+    },
+  },
 };
 
 export default productResolvers;

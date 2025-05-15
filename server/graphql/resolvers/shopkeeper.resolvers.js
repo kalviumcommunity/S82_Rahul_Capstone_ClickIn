@@ -21,6 +21,36 @@ const shopkeeperResolvers = {
     }
   },
 
+  Mutation: {
+    // Create a new shopkeeper
+    createShopkeeper: async (_, { input }) => {
+      try {
+        const newShopkeeper = new Shopkeeper(input);
+        return await newShopkeeper.save();
+      } catch (error) {
+        throw new Error('Failed to create shopkeeper');
+      }
+    },
+
+    // Update shopkeeper by ID
+    updateShopkeeper: async (_, { id, input }) => {
+      try {
+        return await Shopkeeper.findByIdAndUpdate(id, input, { new: true });
+      } catch (error) {
+        throw new Error('Failed to update shopkeeper');
+      }
+    },
+
+    // Delete a shopkeeper
+    deleteShopkeeper: async (_, { id }) => {
+      try {
+        const deleted = await Shopkeeper.findByIdAndDelete(id);
+        return deleted !== null;
+      } catch (error) {
+        throw new Error('Failed to delete shopkeeper');
+      }
+    }
+  }
 };
 
 export default shopkeeperResolvers;

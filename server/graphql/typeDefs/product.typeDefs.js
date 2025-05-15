@@ -33,7 +33,12 @@ const productTypeDefs = gql`
     searchProducts(query: String!): [Product!]!
   }
 
-  
+  # Mutations for creating, updating, and deleting products
+  type Mutation {
+    createProduct(input: ProductInput!): Product!
+    updateProduct(id: ID!, input: ProductInput!): Product!
+    deleteProduct(id: ID!): Boolean!
+  }
 `;
 
 export default productTypeDefs;
