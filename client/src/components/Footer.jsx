@@ -53,17 +53,18 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Contact</h3>
             <p className="text-sm text-gray-600">
-              Email: support@instait.com
+              Email: clickin@gmail.com
             </p>
             <p className="text-sm text-gray-600">
-              Phone: +1-123-456-7890
+              Phone: +91-123-456-7890
             </p>
           </div>
         </div>
+        <button></button>
         
         <div className="mt-8 pt-4 border-t border-gray-200">
           <p className="text-sm text-center text-gray-500">
-            &copy; {new Date().getFullYear()} Instait. All rights reserved.
+            &copy; {new Date().getFullYear()} ClickIn. All rights reserved.
           </p>
         </div>
       </div>
