@@ -1,34 +1,15 @@
+
+
 const errorHandler = (err, req, res, next) => {
-  console.error("Error:", err);
+  console.error(err.message || err); // Log error details for debugging
 
-  let statusCode = err.statusCode || 500;
-  let message = err.message || 'Something went wrong';
+  const statusCode = err.statusCode || 500; // Default to 500 (Internal Server Error)
+  const message = err.message || 'Something went wrong';
 
-  // Handle Mongoose validation errors 
-  if (err.name === 'ValidationError') {
-    statusCode = 400;
-    const messages = Object.values(err.errors).map(val => val.message);
-    message = messages.join(', ');
-  }
-
-  // Handle duplicate key errors (e.g., unique email)
-  if (err.code && err.code === 11000) {
-    statusCode = 409; // Conflict
-    const field = Object.keys(err.keyValue);
-    message = `Duplicate field value: ${field}. Please use another value.`;
-  }
-
-  // Handle cast errors (e.g., invalid ObjectId)
-  if (err.name === 'CastError') {
-    statusCode = 400;
-    message = `Invalid ${err.path}: ${err.value}`;
-  }
-
-  // Return JSON error response
+  // Respond with a JSON error message
   res.status(statusCode).json({
     success: false,
     message,
-    ...(process.env.NODE_ENV === 'development' && { stack: err.stack }), // Only include stack trace in dev
   });
 };
 
