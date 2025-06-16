@@ -55,7 +55,7 @@ const Login = () => {
     <MainLayout>
       <div className="container mx-auto px-4 py-12 max-w-md">
         <div className="bg-white p-8 rounded-lg shadow-md">
-          <h1 className="text-2xl font-bold text-center mb-6">Login to Instait</h1>
+          <h1 className="text-2xl font-bold text-center mb-6">Login to ClickIn</h1>
 
           <Tabs defaultValue="customer" onValueChange={(value) => setRole(value)}>
             <TabsList className="grid w-full grid-cols-3 mb-6">

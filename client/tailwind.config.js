@@ -1,24 +1,13 @@
-// /** @type {import('tailwindcss').Config} */
-// module.exports = {
-//     content: [
-//       './index.html',
-//       './src/**/*.{js,jsx,ts,tsx}', // Adjust if you have different file extensions
-//     ],
-//     theme: {
-//       extend: {},
-//     },
-//     plugins: [],
-//   }
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     './index.html',
-    './src/**/*.{js,jsx,ts,tsx}', // Adjust if you have different file extensions
+    './src/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
     extend: {
       colors: {
-        background: 'hsl(var(--background))', // For using your custom CSS variable
+        background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: 'hsl(var(--card))',
         'card-foreground': 'hsl(var(--card-foreground))',
@@ -37,7 +26,7 @@ module.exports = {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
-        radius: 'var(--radius)', // Custom radius
+        radius: 'var(--radius)',
         sidebar: 'hsl(var(--sidebar-background))',
         'sidebar-foreground': 'hsl(var(--sidebar-foreground))',
         'sidebar-primary': 'hsl(var(--sidebar-primary))',
@@ -48,9 +37,11 @@ module.exports = {
         'sidebar-ring': 'hsl(var(--sidebar-ring))',
       },
       borderColor: {
-        'border': 'var(--border)', // Custom border variable
+        'border': 'var(--border)',
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'), 
+  ],
 }
